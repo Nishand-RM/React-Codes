@@ -1,0 +1,25 @@
+.card_create{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 10px;
+    background-color: white;
+    overflow: hidden;
+    position: relative;
+    top: 15px;
+}
+
+.container{
+    display: flex;
+    justify-content: space-around;
+    background-color:blue;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%
+}
+
+h1{
+    text-align: center;
+}
