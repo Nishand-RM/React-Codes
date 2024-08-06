@@ -49,10 +49,9 @@ const cardData = [
 function App() {
   return (
     <div className='container'>
-        <Cards 
-        data ={cardData[0]}/>
-        <Cards />
-        <Cards />
+        {cardData.map((data) => (
+        <Cards  data={data} />
+      ))}
             
     </div>
   )
