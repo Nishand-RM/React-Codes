@@ -2,7 +2,7 @@ import React from 'react'
 
 const C3 = ({coin}) => {
   return (
-    <div>{coin[1]}</div>
+    <div className='box3'>C3</div>
   )
 }
 

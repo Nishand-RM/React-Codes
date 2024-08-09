@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import C3 from './components/C3'
-import C4 from './components/C4'
+import C1 from './components/C1';
+
 
 export const App = () => {
 
@@ -8,8 +8,7 @@ export const App = () => {
 
   return (
     <div>
-      <C3  coin ={coin}/>
-      <C4  coin={coin}/>
+      <C1 coin={coin}/>
     </div>
   )
 }
