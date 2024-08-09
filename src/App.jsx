@@ -1,19 +1,16 @@
-import React from 'react'
-import Web from './components/Web';
-import './components/Card_fun.css'
+import React, { useState } from 'react'
+import C3 from './components/C3'
+import C4 from './components/C4'
 
+export const App = () => {
 
-
-function App() {
-
- 
+  const [coin,setcoin] = useState([20,30,40,50])
 
   return (
-    <div className='mainbox'>
-      <Web />
-      
+    <div>
+      <C3  coin ={coin}/>
+      <C4  coin={coin}/>
     </div>
-
   )
 }
 
