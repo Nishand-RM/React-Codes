@@ -6,21 +6,21 @@ import { useRef } from 'react';
 
 const App = () => {
 
-  const inputref = useRef(null);
+  const countref = useRef(0);
   
-  const handlefocus = ()=>{
+  const inc = ()=>{
     //move the focus to input box
 
-    inputref.current.focus();
+    countref.current += 1;
+    console.log(countref.current);
   }
   
   return (
     <div>
-      <input type='text' placeholder='write something' 
-      ref={inputref}
+      <h1>Count:{countref.current}</h1>
       
-      />
-      <button  onClick={handlefocus}>Focus</button>     
+      
+      <button  onClick={inc}>INC</button>     
       </div>
   )
 }
