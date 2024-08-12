@@ -3,8 +3,10 @@ import { useReducer } from 'react';
 import { useRef } from 'react';
 
 
-const initial = 0;
-
+const initial = {
+  count:0,
+  clicks:[]
+};
 
 function reducer(state,action){
 //reducer function is called whwn dispatch is called
@@ -15,13 +17,21 @@ function reducer(state,action){
 switch (action.type)
   {
     case "INCREMENT":
-      return state+1;
+      return {
+        count:state.count+1,
+        clicks:[...state.clicks,"INC"]
+      };
 
       case "DECREMENT":
-        return state-1;
+        return{count:state.count-1,
+          clicks:[...state.clicks,"DEC"]
+        };
 
       case "RESET":
-      return initial;
+      return {
+        count:0,
+        clicks:[...state.clicks,"RST"]
+      };
 
       
 
@@ -33,7 +43,7 @@ switch (action.type)
 
 const App = () => {
 
-const [count,dispatch] = useReducer(reducer,initial) ; 
+const [state,dispatch] = useReducer(reducer,initial) ; 
   
 
 const inc = ()=>{
@@ -55,13 +65,13 @@ const inc = ()=>{
   
   return (
     <div>
-      <h1>Count:{count}</h1>
+      <h1>Count:{state.count}</h1>
       
       
       <button  onClick={inc}>INC</button>     
       <button  onClick={dec}>DEC</button>     
       <button  onClick={rst}>RST</button>    
- 
+      <p> {state.clicks.join(",")} </p>
 
       </div>
   )
