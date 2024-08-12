@@ -1,15 +1,27 @@
-import React, { useState } from 'react'
-import C1 from './components/C1';
 
 
-export const App = () => {
+import { Button } from 'bootstrap';
+import React from 'react'
+import { useRef } from 'react';
 
-  const [coin,setcoin] = useState([20,30,40,50])
+const App = () => {
 
+  const inputref = useRef(null);
+  
+  const handlefocus = ()=>{
+    //move the focus to input box
+
+    inputref.current.focus();
+  }
+  
   return (
     <div>
-      <C1 coin={coin}/>
-    </div>
+      <input type='text' placeholder='write something' 
+      ref={inputref}
+      
+      />
+      <button  onClick={handlefocus}>Focus</button>     
+      </div>
   )
 }
 
