@@ -1,63 +1,39 @@
-import { useFormik } from "formik";
-import { useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { decrement, increment, selectCount } from "./features/counter/Counterslice";
+import { addHistory, selectHistory } from "./features/counter/historySlice";
 
-const validate = values => {
-  const errors = {};
-
-  if (!values.name) {
-    errors.name = 'Name is required';
-  }
-
-  if(!values.email) {
-    errors.email = 'Email is required';
-  }
-
-  return errors;
-}
-
-// Handling form without formik library
 const App = () => {
 
-  const formik = useFormik({
-    initialValues: {
-      name: '',
-      email: ''
-    },
-    validate,
-    onSubmit: (values, { resetForm }) => {
-      resetForm();
-    }
-  });
+  const count = useSelector(selectCount);
+  const dispatch = useDispatch();
+  const history = useSelector(selectHistory);
 
-  const ref = useRef(null);
+  const handleIncrement = () => {
+    dispatch(increment());
+    dispatch(addHistory('Incr'));
+  } 
+
+  const handleDecrement = () => {
+    dispatch(decrement());
+    dispatch(addHistory('Decr'));
+  }
 
   return (
     <div>
-      <h1>Subscribe to our newsletter</h1>
-      <form onSubmit={formik.handleSubmit}>
-        <div>
-          <label>
-            Name:
-            <input type="text" name="name" 
-              value={formik.values.name}
-              onChange={formik.handleChange}
-              ref={ref}
-            />
-            {formik.errors.name ? <div>{formik.errors.name}</div> : null}
-          </label>
-        </div>
-        <div>
-          <label>
-            Email:
-            <input type="email" name="email" 
-              value={formik.values.email}
-              onChange={formik.handleChange}
-            />
-            {formik.errors.email ? <div>{formik.errors.email}</div> : null}
-          </label>
-        </div>
-        <button type="submit">Subscribe</button>
-      </form>
+      <div>
+        <h1>Count: {count}</h1>
+        <button onClick={handleIncrement}>Increment</button>
+        <button onClick={handleDecrement}>Decrement</button>
+      </div>
+      <div>
+        <p>
+          {
+            history.map((h, index) => (
+              <span key={index}>{h + ', '}</span>
+            ))
+          }
+        </p>
+      </div>
     </div>
   )
 }
